@@ -46,7 +46,6 @@ runs:
         IMAGE_URI: ${{ steps.image-uri.outputs.image-path }}
       with:
         result-encoding: string
-        debug: true
         script: |
           var tags = function(str) {
             const arr = str.split(',');
