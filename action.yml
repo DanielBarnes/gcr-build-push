@@ -1,5 +1,5 @@
 name: 'GCR Build and Push'
-description: ''
+description: 'TODO'
 inputs: 
   tags:
     description: 'Tags for the docker build defaults to latest, always tags with commit hash of the repo checkout.'
@@ -12,12 +12,12 @@ inputs:
     description: 'The name of the container to build (most likely the repo name) will be implied from repo name if not set.'
     required: false
   GCR-key:
-    description: 'GCP JSON key with the correct permissions e.x. ${{ secrets.GCP_credientials }}'
+    description: 'GCP JSON key with the correct permissions e.x. secrets.GCP_credientials'
     required: false
 
 outputs:
   image-name:
-    description: ''
+    description: 'TODO'
     value: ${{ steps.commit-image.outputs.name }}
 
 runs:
@@ -31,11 +31,11 @@ runs:
       id: container-name
       shell: bash
       run: |
-      if [ -z ${{ inputs.conatiner-name }}] ; then
-        echo "::set-output name=name::${{ inputs.container-name }}"
-      else
-        echo "::set-outout name=name::$(basename $(git rev-parse --show-toplevel))"
-      fi
+        if [ -z ${{ inputs.conatiner-name }}] ; then
+          echo "::set-output name=name::${{ inputs.container-name }}"
+        else
+          echo "::set-outout name=name::$(basename $(git rev-parse --show-toplevel))"
+        fi
     - name: "Build docker image URI"
       id: image-uri
       shell: bash
