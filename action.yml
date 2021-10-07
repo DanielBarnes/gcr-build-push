@@ -56,10 +56,11 @@ runs:
             return arr;
           }('${{ inputs.tags }}')
           tags.push(context.sha)
-          tags.map((tag) => {
+          tags = tags.map((tag) => {
             return process.env['IMAGE_URI'] + ':' + tag
           })
           var tagsStr = tags.join(',')
+          console.log(tagsStr)
           return tagsStr
     - name: GCR Docker Login
       uses: docker/login-action@v1
