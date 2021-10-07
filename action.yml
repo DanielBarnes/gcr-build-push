@@ -49,12 +49,13 @@ runs:
         debug: true
         script: |
           var tags = function(str) {
+            console.log(str);
             const arr = str.split(',');
             for (let i = 0; i < arr.length; i++) {
               arr[i] = arr[i].trim();
             }
             return arr;
-          }(core.getInput('tags'))
+          }('${{ inputs.tags }}')
           tags.push(context.sha)
           tags.map((tag) => {
             return process.env['IMAGE_URI'] + ':' + tag
