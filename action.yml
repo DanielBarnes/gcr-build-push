@@ -60,7 +60,6 @@ runs:
             return process.env['IMAGE_URI'] + ':' + tag
           })
           var tagsStr = tags.join(',')
-          console.log(tagsStr)
           return tagsStr
     - name: GCR Docker Login
       uses: docker/login-action@v1
