@@ -1,5 +1,9 @@
 name: 'GCR Build and Push'
 description: 'A Composite Action to simplify the tagging, building, and pushing of docker containers to GCR'
+branding:
+  icon: arrow-right-circle
+  color: gray-dark
+
 inputs: 
   tags:
     description: 'Tags for the docker build defaults to latest, always tags with commit hash of the repo checkout.'
