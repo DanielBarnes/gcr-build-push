@@ -42,6 +42,7 @@ runs:
       run: echo "::set-output name=image-path::gcr.io/${{ inputs.project-id }}/${{ steps.container-name.outputs.name }}"
     - name: populate commit image tag
       id: commit-image
+      shell: bash
       run: echo "::set-output name=name::${{ steps.image-uri.outputs.image-path }}:${{ github.sha }}"
     - name: "Build URI:tag csv"
       id: tags-csv
