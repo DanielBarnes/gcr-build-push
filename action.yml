@@ -49,7 +49,6 @@ runs:
         debug: true
         script: |
           var tags = function(str) {
-            console.log(str);
             const arr = str.split(',');
             for (let i = 0; i < arr.length; i++) {
               arr[i] = arr[i].trim();
@@ -60,9 +59,7 @@ runs:
           tags.map((tag) => {
             return process.env['IMAGE_URI'] + ':' + tag
           })
-          var tagsStr = tags.join(',')//'
-          console.log(tags);
-          console.log(tagsStr);
+          var tagsStr = tags.join(',')
           return tagsStr
     - name: GCR Docker Login
       uses: docker/login-action@v1
