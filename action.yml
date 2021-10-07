@@ -59,7 +59,10 @@ runs:
           tags.map((tag) => {
             return process.env['IMAGE_URI'] + ':' + tag
           })
-          return tags.join(',');//'
+          var tagsStr = tags.join(',')//'
+          console.log(tags);
+          console.log(tagsStr);
+          return tagsStr
     - name: GCR Docker Login
       uses: docker/login-action@v1
       with:
