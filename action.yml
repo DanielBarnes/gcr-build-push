@@ -1,5 +1,7 @@
+---
 name: 'GCR Build and Push'
 description: 'A Composite Action to simplify the tagging, building, and pushing of docker containers to GCR'
+author: Daniel Barnes
 branding:
   icon: arrow-right-circle
   color: gray-dark
