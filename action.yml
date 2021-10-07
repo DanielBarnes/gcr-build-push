@@ -16,7 +16,7 @@ inputs:
 
   GCR-key:
     description: 'GCP JSON key with the correct permissions e.x. secrets.GCP_credientials'
-    required: false
+    required: true
 
 outputs:
   image-name:
