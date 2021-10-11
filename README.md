@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build and push repo
-        uses: DanielBarnes/gcr-build-push@main
+        uses: dacbd/gcr-build-push@main
         with:
           tags: latest
           project-id: ${{ secrets.GCP_PROJECT_ID }}
