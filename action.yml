@@ -6,7 +6,7 @@ branding:
   icon: arrow-right-circle
   color: gray-dark
 
-inputs: 
+inputs:
   tags:
     description: 'Tags for the docker build defaults to latest, always tags with commit hash of the repo checkout.'
     required: false
@@ -16,7 +16,7 @@ inputs:
     description: 'registry domain, defaults to gcr.io'
     required: false
     default: 'gcr.io'
-  
+
   project-id:
     description: 'The project id for the gcp cloud env'
     required: true
@@ -38,7 +38,7 @@ runs:
   using: "composite"
   steps:
     - name: "Checkout repo"
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
@@ -59,7 +59,7 @@ runs:
 
     - name: "Build URI:tag csv"
       id: tags-csv
-      uses: actions/github-script@v5
+      uses: actions/github-script@v6
       env:
         IMAGE_URI: ${{ steps.image-uri.outputs.image-path }}
       with:
@@ -80,17 +80,17 @@ runs:
           return tagsStr
 
     - name: "GCR Docker Login"
-      uses: docker/login-action@v1
+      uses: docker/login-action@v2
       with:
         registry: ${{ inputs.registry }}
         username: _json_key
         password: ${{ inputs.GCR-key }}
 
     - name: "Setup docker buildx"
-      uses: docker/setup-buildx-action@v1
+      uses: docker/setup-buildx-action@v2
 
     - name: "Build and Push"
-      uses: docker/build-push-action@v2
+      uses: docker/build-push-action@v4
       with:
         context: ./
         file: ./Dockerfile
@@ -98,3 +98,4 @@ runs:
         tags: ${{ steps.tags-csv.outputs.result }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
+        provenance: false
